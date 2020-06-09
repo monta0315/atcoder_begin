@@ -2,42 +2,57 @@
 #include<stdbool.h>
 #include<string.h>
 #include<math.h>
+#include<stdlib.h>
 #define rep(i,n) for(int i=0; i <(n); i++)
-#define ROW 4
-#define COL 5
-int route[ROW];
-int pathList[ROW][COL];
+#define N 4
 
-void initRoute(){
-  rep(k,ROW){
-    route[k]=0;
-  }
-}
-int flag=0;
-void dfs(int start,int target){
-  route[start]=1;
-  printf("%d→",start);
-  if(start==target){
-    printf("FOUND TARGET");
-    flag=1;
-  }
-  for(int l=0;pathList[start][l]!=0;l++){
-    if(route[pathList[start][l]]==0){
-      dfs(pathList[start][l],target);
+int b[N][N] = {{2,1,1,2},
+               {1,0,0,1},
+               {1,0,0,1},
+               {2,1,1,0}};
+int a[N][N] = {{0,2,2,1},
+               {2,0,0,1},
+               {2,0,0,1},
+               {1,1,1,0}};
+
+int v[N][N];
+int last;
+void dfs(int i,int j){
+  if(a[i][j]-v[i][j]>0){
+    printf(" %c->%c",i+65,j+65);
+    v[i][j]++;
+    v[j][i]++;
+    dfs(j,i);
+    last = j;
+  }else{
+    rep(k,N){
+      if(a[i][k]-v[i][k]>0){
+        dfs(i,k);
+      }
     }
+
   }
 }
-
 int main(){
-  rep(i,ROW){
-    rep(j,COL){
-      scanf("%d",&pathList[i][j]);
+  rep(n,N){
+    rep(o,N){
+      v[n][o]=0;
     }
   }
-  initRoute();
-  dfs(1,6);
-  if(flag==0){
-    printf("解なし");
+  dfs(0,0);
+  printf("\n");
+  rep(l,N){
+    rep(m,N){
+      if(a[l][m]-v[l][m]!=0){
+        printf("オイラー閉路ではありません");
+        return 0;
+      }
+    }
+  }
+  if(last!=0){
+    printf("オイラー小道ではある");
+  }else{
+    printf("オイラー閉路です");
   }
   return 0;
 }

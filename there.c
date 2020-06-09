@@ -6,7 +6,6 @@ int main(){
   char n[1000];
   scanf("%s",n);
   int len=strlen(n)-1;
-  printf("%d\n", len);
   if(n[len]=='3'){
     printf("bon");
     return 0;
