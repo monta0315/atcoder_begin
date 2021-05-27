@@ -14,18 +14,11 @@ using Graph = vector<vector<int>>;
 const int MOD = 1000000007;
 const long long INF = 1LL << 60;
 //for(int tmp =0;tmp<(1<<ex.length()-1);tmp++){bitset<num>b(tmp)}for(int i=0;i<ex.length()-1;i++){if(b.test(i)){}
-
-
 int main(){
-  int n;cin>>n;
-  map<string,int>store;
+  ll n,l,k;
+  cin>>n>>l>>k;
+  vector<ll>a(n);
   rep(i,n){
-    string s;
-    cin>>s;
-    if(store[s]==0){
-      store[s]++;
-      out(i+1);
-    }
+    cin>>a.at(i);
   }
 }
-//storeではなくmap関数を使用する

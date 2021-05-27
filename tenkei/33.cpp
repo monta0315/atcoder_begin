@@ -14,18 +14,29 @@ using Graph = vector<vector<int>>;
 const int MOD = 1000000007;
 const long long INF = 1LL << 60;
 //for(int tmp =0;tmp<(1<<ex.length()-1);tmp++){bitset<num>b(tmp)}for(int i=0;i<ex.length()-1;i++){if(b.test(i)){}
-
-
 int main(){
-  int n;cin>>n;
-  map<string,int>store;
-  rep(i,n){
-    string s;
-    cin>>s;
-    if(store[s]==0){
-      store[s]++;
-      out(i+1);
-    }
+  int h;cin>>h;
+  int w;cin>>w;
+  int h_num,w_num = 0;
+  if(h==1||w==1){
+    //４つ含む領域が存在しないから？
+    out(h*w);
+    exit(0);
   }
+  if(h%2==0){
+    h_num = h/2;
+  }else{
+    h_num = h/2+1;
+  }
+  if(w%2==0){
+    w_num = w/2;
+  }
+  else{
+    w_num = w/2+1;
+  }
+  out(h_num*w_num);
 }
-//storeではなくmap関数を使用する
+//左上から埋めていく
+//全探索すると2^10000乗になり死ぬ
+//隅奇で場合わけ
+//偶数の時->h/2

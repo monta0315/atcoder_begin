@@ -14,18 +14,17 @@ using Graph = vector<vector<int>>;
 const int MOD = 1000000007;
 const long long INF = 1LL << 60;
 //for(int tmp =0;tmp<(1<<ex.length()-1);tmp++){bitset<num>b(tmp)}for(int i=0;i<ex.length()-1;i++){if(b.test(i)){}
-
-
 int main(){
-  int n;cin>>n;
-  map<string,int>store;
-  rep(i,n){
-    string s;
-    cin>>s;
-    if(store[s]==0){
-      store[s]++;
-      out(i+1);
-    }
+  unsigned long long a;cin>>a;
+  unsigned long long b;cin>>b;
+  unsigned long long g = __gcd(a,b);
+  unsigned long long POW18 = 1000000000000000000LL;
+  ll c = a/g;
+  if(c>POW18/b){
+    out("Large");
+  }else{
+    out((c*b));
   }
 }
-//storeではなくmap関数を使用する
+//最小公倍数gと最大公約数lは数字a,bを用いて a*b=g*lと表せるそう
+//a/r * bのところでオーバーフローを起こすから10^18/b>a/rを調べる
