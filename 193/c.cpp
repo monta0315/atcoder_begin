@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
-#define fore(i, a) for (auto &a : a)
+#define fore(i,a) for(auto &a:a)
 #define e(v) sort(v.begin(), v.end())
 #define rev(v) reverse(v.begin(), v.end())
 #define out(s) cout << s << endl
@@ -14,37 +14,23 @@ using Graph = vector<vector<int>>;
 const int MOD = 1000000007;
 const long long INF = 1LL << 60;
 //for(int tmp =0;tmp<(1<<ex.length()-1);tmp++){bitset<num>b(tmp)}for(int i=0;i<ex.length()-1;i++){if(b.test(i)){}
-
-bool binary_search(string s, vector<string> &store)
-{
-  //if(store.size()==0){return true;}
-  int right = store.size();
-  int left = -1;
-  while (right - left > 1)
-  {
-    int mid = left + (right - left) / 2;
-    if (store.at(mid) >= s)
-    {
-      right = mid;
-    }
-    else
-    {
-      left = mid;
+int main(){
+  ll n;cin>>n;
+  ll ans = 0;
+  map<ll,int>store;
+  for(int i=2;i<=sqrt(n);i++){
+    ll base = i;
+    ll num = i;
+    while(num*base<=n){
+      num *=base;
+      store[num]++;
+      if(store[num]==1){
+        ans ++;
+      }
     }
   }
-  if (store.at(right) == s)
-  {
-    return false;
-  }
-  else
-  {
-    return true;
-  }
+  out(n-ans);
 }
-
-int main()
-{
-  vector<string> store{"e869120", "atcoder", "square1001"};
-  e(store);
-  out(binary_search("atcoder", store));
-}
+//どう全探索するか
+//ルートnまでの数字をnを超えるまで累乗していき、その数を足す
+//ダブリがある

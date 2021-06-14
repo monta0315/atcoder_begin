@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
-#define fore(i, a) for (auto &a : a)
+#define fore(i,a) for(auto &a:a)
 #define e(v) sort(v.begin(), v.end())
 #define rev(v) reverse(v.begin(), v.end())
 #define out(s) cout << s << endl
@@ -15,36 +15,30 @@ const int MOD = 1000000007;
 const long long INF = 1LL << 60;
 //for(int tmp =0;tmp<(1<<ex.length()-1);tmp++){bitset<num>b(tmp)}for(int i=0;i<ex.length()-1;i++){if(b.test(i)){}
 
-bool binary_search(string s, vector<string> &store)
-{
-  //if(store.size()==0){return true;}
-  int right = store.size();
-  int left = -1;
-  while (right - left > 1)
-  {
-    int mid = left + (right - left) / 2;
-    if (store.at(mid) >= s)
-    {
-      right = mid;
-    }
-    else
-    {
-      left = mid;
-    }
-  }
-  if (store.at(right) == s)
-  {
-    return false;
-  }
-  else
-  {
-    return true;
-  }
+ll g1(ll x){
+  string s = to_string(x);
+  sort(s.begin(),s.end(),greater<char>());
+  return stol(s);
 }
 
-int main()
-{
-  vector<string> store{"e869120", "atcoder", "square1001"};
-  e(store);
-  out(binary_search("atcoder", store));
+ll g2(ll x){
+  string s = to_string(x);
+  e(s);
+  return stol(s);
+}
+
+ll f(ll x){
+  return (g1(x) - g2(x));
+}
+
+
+
+int main(){
+  ll n;cin>>n;
+  ll k;cin>>k;
+  ll ans;
+  for(int i=0;i<k;i++){
+    n = f(n);
+  }
+  out(n);
 }

@@ -14,37 +14,42 @@ using Graph = vector<vector<int>>;
 const int MOD = 1000000007;
 const long long INF = 1LL << 60;
 //for(int tmp =0;tmp<(1<<ex.length()-1);tmp++){bitset<num>b(tmp)}for(int i=0;i<ex.length()-1;i++){if(b.test(i)){}
-
-bool binary_search(string s, vector<string> &store)
+int main()
 {
-  //if(store.size()==0){return true;}
-  int right = store.size();
-  int left = -1;
-  while (right - left > 1)
+  ll n, k;
+  cin >> n >> k;
+  vector<ll> a(n), b(n);
+  vector<pair<ll, ll>> store(n);
+  rep(i, n)
   {
-    int mid = left + (right - left) / 2;
-    if (store.at(mid) >= s)
+    ll c, d;
+    cin >> c >> d;
+    store.at(i).first = c;
+    store.at(i).second = d;
+  }
+  e(store);
+  ll now = 0;
+  rep(i, n)
+  {
+    if (store.at(i).first - now <= k)
     {
-      right = mid;
+      if (store.at(i).first == now)
+      {
+        k += store.at(i).second;
+      }
+      else
+      {
+        k += store.at(i).second - (store.at(i).first - now);
+      }
+      now = store.at(i).first;
     }
     else
     {
-      left = mid;
+      break;
     }
   }
-  if (store.at(right) == s)
-  {
-    return false;
-  }
-  else
-  {
-    return true;
-  }
+  out(now + k);
 }
-
-int main()
-{
-  vector<string> store{"e869120", "atcoder", "square1001"};
-  e(store);
-  out(binary_search("atcoder", store));
-}
+//素直に実装してみる
+//i番目にいる友達の村の番号から現在いる村の番号までがKより小さければok
+//

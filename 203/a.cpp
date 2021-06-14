@@ -14,37 +14,24 @@ using Graph = vector<vector<int>>;
 const int MOD = 1000000007;
 const long long INF = 1LL << 60;
 //for(int tmp =0;tmp<(1<<ex.length()-1);tmp++){bitset<num>b(tmp)}for(int i=0;i<ex.length()-1;i++){if(b.test(i)){}
-
-bool binary_search(string s, vector<string> &store)
+int main()
 {
-  //if(store.size()==0){return true;}
-  int right = store.size();
-  int left = -1;
-  while (right - left > 1)
+  int a, b, c;
+  cin >> a >> b >> c;
+  if (a == b)
   {
-    int mid = left + (right - left) / 2;
-    if (store.at(mid) >= s)
-    {
-      right = mid;
-    }
-    else
-    {
-      left = mid;
-    }
+    out(c);
   }
-  if (store.at(right) == s)
+  else if (a == c)
   {
-    return false;
+    out(b);
+  }
+  else if (b == c)
+  {
+    out(a);
   }
   else
   {
-    return true;
+    out(0);
   }
-}
-
-int main()
-{
-  vector<string> store{"e869120", "atcoder", "square1001"};
-  e(store);
-  out(binary_search("atcoder", store));
 }

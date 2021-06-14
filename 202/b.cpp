@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
-#define fore(i, a) for (auto &a : a)
+#define fore(i,a) for(auto &a:a)
 #define e(v) sort(v.begin(), v.end())
 #define rev(v) reverse(v.begin(), v.end())
 #define out(s) cout << s << endl
@@ -14,37 +14,18 @@ using Graph = vector<vector<int>>;
 const int MOD = 1000000007;
 const long long INF = 1LL << 60;
 //for(int tmp =0;tmp<(1<<ex.length()-1);tmp++){bitset<num>b(tmp)}for(int i=0;i<ex.length()-1;i++){if(b.test(i)){}
-
-bool binary_search(string s, vector<string> &store)
-{
-  //if(store.size()==0){return true;}
-  int right = store.size();
-  int left = -1;
-  while (right - left > 1)
-  {
-    int mid = left + (right - left) / 2;
-    if (store.at(mid) >= s)
-    {
-      right = mid;
-    }
-    else
-    {
-      left = mid;
+int main(){
+  string s;
+  cin>>s;
+  rep(i,s.length()){
+    if(s.at(i)=='6'){
+      s.at(i)='9';
+    }else if(s.at(i)=='9'){
+      s.at(i)='6';
     }
   }
-  if (store.at(right) == s)
-  {
-    return false;
+  rep(i,s.length()){
+    cout<<s.at(s.length()-i-1);
   }
-  else
-  {
-    return true;
-  }
-}
-
-int main()
-{
-  vector<string> store{"e869120", "atcoder", "square1001"};
-  e(store);
-  out(binary_search("atcoder", store));
+  out("");
 }
